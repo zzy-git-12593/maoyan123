@@ -1,0 +1,44 @@
+1。filter过滤器  ：可在全局做封装，在使用时传入参数，filter（参数）
+ 	注意：【style内不支持过滤器如url（）】=》方案一：计算属性；方案二：可以直接在样式中使用.replace方法
+2。内联样式 使用字符串拼接{ ‘’} 如果用常规class标签要使用字符串形式引号 否则使用小驼峰
+	·:style="{backgroundColor:cinemaDetail.backgroundColor}"
+	:style="{ 'background-image': 'url(' + filterBgImg+ ')'}"
+
+3。div使用绝对定位可以形成叠加 比如背景色和背景图叠加 背景色在最下面
+
+4.Vue.js页面数据渲染成功，但是控制台还是报错提示未定义  原因：dom节点创造和数据请求异步了，第一次创建没有数据，但是警告已经报了，第二次数据渲染了
+解决方案：【在dom节点在做判断等数据回来再渲染】
+
+4.获取时间戳   var time1 = date.getTime(); var time2 = date.valueOf(); var time3 = Date.parse(date);
+	注：在苹果手机里这样使用会因为日期中间有空格导致结果为NaN,可以将日期分割然后进行转化
+
+        	var str='2018-06-08 18:00:00' ;
+
+        	var time=new Date(str.split(" ")).getTime();
+	————————————————
+
+5.时间戳转换
+function formatDateTime(inputTime){
+            var date = new Date(inputTime);
+            var y = date.getFullYear();
+            var m = date.getMonth() + 1;
+            m = m < 10 ? ('0' + m) : m;
+            var d = date.getDate();
+            d = d < 10 ? ('0' + d) : d;
+            var h = date.getHours();
+            h = h < 10 ? ('0' + h) : h;
+            var minute = date.getMinutes();
+            var second = date.getSeconds();
+            minute = minute < 10 ? ('0' + minute) : minute;
+            second = second < 10 ? ('0' + second) : second;
+            return y + '-' + m + '-' + d + ' ' + '　' + h + ':' + minute + ':' + second;
+        }
+
+    console.log(formatDateTime(1572106846965));//2019-10-27 　00:20:46
+
+6 ajax请求数据时，请求实时数据，需要使用post 
+7.路由切换动画
+	由于路由跳转时，动画过渡期间背景时空白。可以再路由中添加一个default 路由为跳转前页面，可参考vue 路由命名视图
+布局：
+9 生命周期：keep alive 组件 需要请求数据，需要在actived生命周期内执行
+min-height 100%，保证最小值时百分之百满屏
